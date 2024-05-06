@@ -61,8 +61,14 @@ def friendButton(curr_name,col):
     j = 2 
     l = col + 1
     dir_path = 'images/' + curr_name.lower() + '/'
-    if os.path.exists(dir_path):
+    if not os.path.exists(dir_path):
+        messagebox.showinfo(" ",f"Friends Folder doesn't exist for {curr_name}.")
+    
+
+    elif os.path.exists(dir_path):    
         friendImages = [f for f in os.listdir(dir_path) if f.endswith('.png')]
+        if not friendImages:
+             messagebox.showinfo(" ",f"Friends Folder does exist for {curr_name} but no image in folder.")
         for friendImage in friendImages:
             file_path = os.path.join(dir_path, friendImage)
             if os.path.isfile(file_path):
@@ -84,6 +90,7 @@ def friendButton(curr_name,col):
                 l += 1
     else:
         j += 1 
+        
     
 
         
